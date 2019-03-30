@@ -30,33 +30,10 @@ class Bootstrap {
 	 */
 	private function __construct() {
 
-//        HopeGravity::get_instance();
-
-		// Load plugin text domain.
-		load_plugin_textdomain( SPSINFO_TEXT_DOMAIN, FALSE,
-			plugin_basename( SPSINFO_PATH ) . '/languages' );
-
-        // Enqueue scripts.
-        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		// Main config for plugin.
+		SPSInfoMainConfig::get_instance();
 
 	}
-
-    /**
-     * Enqueue the required scripts
-     *
-     * @since 0.0.1
-     */
-    public function enqueue_scripts() {
-
-        // Simple Server Info.
-        wp_register_style( 'simple-server-info', SPSINFO_URL . 'assets/css/simple-server-info.css', array(), SPSINFO_VERSION );
-        wp_register_script( 'simple-server-info', SPSINFO_URL . 'assets/js/simple-server-info.js', array(), SPSINFO_VERSION, TRUE );
-
-        wp_enqueue_style( 'simple-server-info' );
-        wp_enqueue_script( 'simple-server-info' );
-
-    }
-
 
 	/****************************
 	 * Instance methods

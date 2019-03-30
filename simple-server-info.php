@@ -42,12 +42,6 @@ if ( ! defined( 'SPSINFO_VERSION' ) ) {
 require SPSINFO_PATH . 'vendor/autoload.php';
 \SPSInfo\Bootstrap::get_instance();
 
-///* Add language support */
-//function debug_info_lang() {
-//	load_plugin_textdomain('debug-info', false, dirname(plugin_basename(__FILE__)) . '/lang/');
-//}
-//add_action('init', 'debug_info_lang');
-//
 ///* Info Page */
 //
 //// Hook for adding admin menus
