@@ -32,10 +32,10 @@ class SPSInfoMainConfig {
 	    load_plugin_textdomain( SPSINFO_TEXT_DOMAIN, FALSE, plugin_basename( SPSINFO_PATH ) . '/languages' );
 
 	    // Add the menu.
-	    add_action( 'admin_menu', array( $this, 'create_menu' ), 1 );
+	    add_action( 'admin_menu', array( $this, 'sps_info_create_menu' ), 1 );
 
 	    // Enqueue scripts.
-	    add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+	    add_action( 'admin_enqueue_scripts', array( $this, 'sps_info_enqueue_scripts' ) );
 
     }
 
@@ -44,7 +44,7 @@ class SPSInfoMainConfig {
 	 *
 	 * @since 0.0.1
 	 */
-	public function create_menu() {
+	public function sps_info_create_menu() {
 
 		// Add the main menu item.
 		add_menu_page(
@@ -66,8 +66,13 @@ class SPSInfoMainConfig {
 	 */
 	public function sps_info_display_main() {
 
+		// Get general info.
+		$general_info = Helpers::sps_info_get_general_info();
+
 		// Load main menu
-		Helpers::load_view( 'main', [] );
+		Helpers::sps_info_load_view( 'main', [
+			'general_info' => $general_info,
+		] );
 
 	}
 
@@ -76,7 +81,7 @@ class SPSInfoMainConfig {
 	 *
 	 * @since 0.0.1
 	 */
-	public function enqueue_scripts() {
+	public function  sps_info_enqueue_scripts() {
 
 		// Simple Server Info.
 		wp_register_style( 'simple-server-info', SPSINFO_URL . 'assets/css/simple-server-info.css', array(), SPSINFO_VERSION );
@@ -110,7 +115,7 @@ class SPSInfoMainConfig {
     /**
      * Get Singleton instance
      *
-     * @return HopeGravity instance
+     * @return SPSInfoMainConfig instance
      */
     public static function get_instance() {
 

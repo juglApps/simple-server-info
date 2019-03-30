@@ -1,0 +1,9 @@
+/** 
+ * Simple Server Info Plugin CSS 
+ * @version 0.0.1 
+ * @author JuglApps 
+ *
+ * Author URI: https://juglapps.com 
+ */ 
+
+.sps-info-main{background-color:#fff;border:8px;-webkit-box-shadow:0 1px 0 0 #e9ecef,0 -1px 0 0 #e9ecef;box-shadow:0 1px 0 0 #e9ecef,0 -1px 0 0 #e9ecef;width:80%}

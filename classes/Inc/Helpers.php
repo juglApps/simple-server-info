@@ -27,7 +27,7 @@ final class Helpers {
 	 *
 	 * @return void
 	 */
-	public static function load_view( $view, $args = [ ], $allow_theme_override = TRUE ) {
+	public static function sps_info_load_view( $view, $args = [ ], $allow_theme_override = TRUE ) {
 
 		$file = $view;
 
@@ -37,7 +37,7 @@ final class Helpers {
 		}
 
 		if ( $allow_theme_override ) {
-			$file = self::locate_template( array( $view ), $file );
+			$file = self::sps_info_locate_template( array( $view ), $file );
 		}
 
 		// Allow using full paths as view name
@@ -73,7 +73,7 @@ final class Helpers {
 	 *
 	 * @return string
 	 */
-	protected static function locate_template( $possibilities, $default = '' ) {
+	protected static function sps_info_locate_template( $possibilities, $default = '' ) {
 
 		// Check if the theme has an override for the template
 		$theme_overrides = array();
@@ -97,6 +97,25 @@ final class Helpers {
 
 		// Not template found
 		return $default;
+	}
+
+	/**
+	 * Get General info
+	 *
+	 * @since 0.0.1
+	 * @return array
+	 */
+	public static function sps_info_get_general_info() {
+
+		$general_info = [];
+
+		// Get WordPress Version.
+		$general_info['wp_version'] = get_bloginfo( 'version' );
+
+		// Get installed theme.
+		$general_info['wp_installed_theme'] = wp_get_theme();
+
+		return $general_info;
 	}
 
 }
